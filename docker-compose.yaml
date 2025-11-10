@@ -1,0 +1,17 @@
+services:
+  mysqldb-service:
+    image: ${DOCKER_USERNAME}/personalmedicinetracker-mysqldb-service:latest
+    build:
+      context: .
+      dockerfile: docker/docker_mysql/Dockerfile.mysql
+    container_name: mysqldb-service-container
+    ports:
+      - "3307:3306"
+    env_file:
+     - .env
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: "no"
+
+volumes:
+  mysql-data:

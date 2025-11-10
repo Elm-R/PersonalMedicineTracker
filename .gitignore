@@ -1,0 +1,105 @@
+# =========================
+# Build Artifacts
+# Ignore build output folders
+# =========================
+build/
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+.mvn/wrapper/maven-wrapper.jar
+
+# =========================
+# Cloud / Secrets
+# Ignore credentials, keys, and other sensitive files
+# =========================
+*.crt
+*.creds
+*.json
+*.key
+*.pem
+.env
+.env.local
+.aws/
+config.json
+secrets.json
+user_keys.tf
+
+# =========================
+# Documents
+# Ignore office documents and PDFs
+# =========================
+*.doc
+*.docx
+*.odt
+*.pdf
+
+
+# =========================
+# Folders
+# Ignore project-specific generated folders
+# =========================
+lambda_package/
+
+# =========================
+# IntelliJ IDEA
+# Ignore IDE project files
+# =========================
+*.iws
+*.iml
+*.ipr
+.idea/
+
+# =========================
+# Kubernetes secrets
+# Ignore Kubernetes secret/config files
+# =========================
+aws_secret.yaml
+medicines-config.yaml
+kubernetes/configmaps/
+kubernetes/secrets/
+
+# =========================
+# Logs
+# Ignore runtime logs
+# =========================
+*.log
+logs/
+
+# =========================
+# NetBeans
+# Ignore IDE project files
+# =========================
+/nbbuild/
+/nbdist/
+.nb-gradle/
+/nbproject/private/
+
+# =========================
+# STS (Spring Tool Suite)
+# Ignore IDE project files
+# =========================
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# =========================
+# System Files
+# Ignore OS-generated files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Terraform
+# Ignore state and configuration files
+# =========================
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
