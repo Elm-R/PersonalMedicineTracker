@@ -1,9 +1,22 @@
 services:
+  app:
+    image: ${DOCKER_USERNAME}/personalmedicinetracker-springapp:latest
+    build:
+      context: .
+      dockerfile: docker_files/docker_springApp/Dockerfile.springApp
+    container_name: medicine-springApp
+    depends_on:
+      - mysqldb-service
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+
   mysqldb-service:
     image: ${DOCKER_USERNAME}/personalmedicinetracker-mysqldb-service:latest
     build:
       context: .
-      dockerfile: docker/docker_mysql/Dockerfile.mysql
+      dockerfile: docker_files/docker_mysql/Dockerfile.mysql
     container_name: mysqldb-service-container
     ports:
       - "3307:3306"

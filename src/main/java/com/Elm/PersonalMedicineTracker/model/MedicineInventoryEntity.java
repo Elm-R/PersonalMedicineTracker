@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,10 +18,11 @@ public class MedicineInventoryEntity {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "medicine_name")
+    private String medicineName;
 
     @Column(name = "medicine_type")
     private String medicineType;
@@ -44,7 +47,7 @@ public class MedicineInventoryEntity {
 
     public void setId(Integer id) { this.id = id; }
 
-    public void setName(String name) { this.name = name; }
+    public void setMedicineName(String medicineName) { this.medicineName = medicineName; }
 
     public void setMedicineType(String medicineType) { this.medicineType = medicineType; }
 
@@ -61,7 +64,7 @@ public class MedicineInventoryEntity {
     // Getters
     public Integer getId() { return id; }
 
-    public String getName() { return name; }
+    public String getMedicineName() { return medicineName; }
 
     public String getMedicineType() { return medicineType; }
 

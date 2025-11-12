@@ -20,6 +20,11 @@ public class MedicineInventoryController {
         this.medInvService = medInvService;
     }
 
+    @PostMapping
+    public MedicineInventoryEntity addMedicine(@RequestBody MedicineInventoryEntity medicine) {
+        return medInvService.addMedicine(medicine);
+    }
+
     //Get all medicines
     @GetMapping
     public List<MedicineInventoryEntity> getAllMedicines() {
@@ -49,5 +54,16 @@ public class MedicineInventoryController {
         return ResponseEntity.ok("Medicine with ID " + id + " deleted successfully.");
     }
 
+    // GET /api/meds/expired
+    @GetMapping("/expired")
+    public List<MedicineInventoryEntity> getExpiredMedicines() {
+        return medInvService.getExpiredMedicines();
+    }
+
+    // GET /api/meds/expiring?days=7
+    @GetMapping("/expiring")
+    public List<MedicineInventoryEntity> getExpiringMedicines(@RequestParam int days) {
+        return medInvService.getExpiringInDays(days);
+    }
 
 }
