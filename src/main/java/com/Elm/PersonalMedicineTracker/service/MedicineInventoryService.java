@@ -2,11 +2,13 @@ package com.Elm.PersonalMedicineTracker.service;
 
 import com.Elm.PersonalMedicineTracker.model.MedicineInventoryEntity;
 import com.Elm.PersonalMedicineTracker.repository.MedicineInventoryRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,10 +17,13 @@ import java.util.List;
 public class MedicineInventoryService {
 
     private final MedicineInventoryRepository medInvRepo;
+    private final Clock clock;
 
-    public MedicineInventoryService(MedicineInventoryRepository medInvRepo) {
+    public MedicineInventoryService(MedicineInventoryRepository medInvRepo, Clock clock) {
         this.medInvRepo = medInvRepo;
+        this.clock = clock;
     }
+
 
     @Transactional
     public MedicineInventoryEntity addMedicine(MedicineInventoryEntity medicine) {
@@ -80,12 +85,16 @@ public class MedicineInventoryService {
         medInvRepo.deleteById(id);
     }
 
+//    public List<MedicineInventoryEntity> getExpiredMedicines() {
+//        return medInvRepo.findExpiredMedicines(LocalDate.now());
+//    }
+
     public List<MedicineInventoryEntity> getExpiredMedicines() {
-        return medInvRepo.findExpiredMedicines(LocalDate.now());
+        return medInvRepo.findExpiredMedicines(LocalDate.now(clock));
     }
 
     public List<MedicineInventoryEntity> getExpiringInDays(int days) {
-        LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now(clock);
         LocalDate targetDate = today.plusDays(days);
         return medInvRepo.findExpiringWithinDays(today, targetDate);
     }

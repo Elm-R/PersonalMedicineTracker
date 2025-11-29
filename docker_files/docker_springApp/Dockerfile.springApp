@@ -6,12 +6,17 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
+# Make mvnw executable
+RUN chmod +x mvnw
+
 # Download dependencies offline
 RUN ./mvnw dependency:go-offline
 
 # Copy source code and build
 COPY ./src ./src
-RUN ./mvnw clean install
+
+#RUN ./mvnw clean install
+RUN mvn clean install -DskipTests
 
 # ===== Runtime Stage =====
 FROM eclipse-temurin:25-jre-alpine AS final

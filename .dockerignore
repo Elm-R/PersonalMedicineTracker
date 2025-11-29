@@ -50,6 +50,7 @@ lambda_package/
 *.iml
 *.ipr
 .idea/
+.run/
 
 # =========================
 # Kubernetes secrets

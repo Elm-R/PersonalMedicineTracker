@@ -8,8 +8,8 @@ A medicine inventory tracker that manages medicines, tracks quantities, and moni
 - Maven
 - MySQL 
 - Docker
-- Terraform (Planned)
-- AWS (Planned: S3, SES, Lambda, EventBridge, CloudWatch)
+- Terraform (In progress)
+- AWS (In progress: S3, SES, Lambda, EventBridge, CloudWatch)
 - Kubernetes (Planned)
 - GitHub Actions (Planned)
 
@@ -30,9 +30,20 @@ A medicine inventory tracker that manages medicines, tracks quantities, and moni
 - **Expiry Tracking**
     - Show items expiring in X days
     - Show expired medicines
-
+---
 ## Docker Setup
 - Database container (MySQL)
 - Application container (Spring Boot)
 - Build and run stages with Docker
 - Docker Compose for orchestration
+
+
+## Cloud Features
+- **AWS Services**
+  - S3 for storage of the medicine inventory data as csv files
+- **Terraform: Infrastructure as Code (IaC)**
+  - used to define, create, and manage all AWS resources
+  
+## Testing
+- Unit tests for service layer
+- Unit tests for AWS services and functions

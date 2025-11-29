@@ -32,13 +32,15 @@ public class MedicineInventoryController {
     }
 
     //Get a single medicine by ID
-    @GetMapping("/{id}")
+    //@GetMapping("/{id}")
+    @GetMapping("/{id:[0-9]+}")
     public MedicineInventoryEntity getMedicineById(@PathVariable Integer id) {
         return medInvService.getMedicineById(id);
     }
 
     // Update medicine quantity
-    @PutMapping("/{id}/quantity")
+    //@PutMapping("/{id}/quantity")
+    @PutMapping("/{id:[0-9]+}/quantity")
     public ResponseEntity<String> updateQuantity(
             @PathVariable Integer id,
             @RequestParam Integer newQuantity) {
@@ -48,7 +50,8 @@ public class MedicineInventoryController {
     }
 
     //Delete a medicine by ID
-    @DeleteMapping("/{id}")
+    //@DeleteMapping("/{id}")
+    @DeleteMapping("/{id:[0-9]+}")
     public ResponseEntity<String> deleteMedicine(@PathVariable Integer id) {
         medInvService.delete(id);
         return ResponseEntity.ok("Medicine with ID " + id + " deleted successfully.");
