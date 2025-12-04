@@ -85,10 +85,6 @@ public class MedicineInventoryService {
         medInvRepo.deleteById(id);
     }
 
-//    public List<MedicineInventoryEntity> getExpiredMedicines() {
-//        return medInvRepo.findExpiredMedicines(LocalDate.now());
-//    }
-
     public List<MedicineInventoryEntity> getExpiredMedicines() {
         return medInvRepo.findExpiredMedicines(LocalDate.now(clock));
     }

@@ -1,5 +1,6 @@
 package com.Elm.PersonalMedicineTracker.aws;
 
+import org.springframework.beans.factory.annotation.Value;
 import software.amazon.awssdk.auth.credentials.AwsCredentials;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
@@ -10,7 +11,14 @@ import software.amazon.awssdk.services.sts.model.GetCallerIdentityResponse;
 import software.amazon.awssdk.services.s3.model.ListBucketsResponse;
 import software.amazon.awssdk.services.s3.S3Client;
 
+
 public class AwsConfigTest {
+
+    @Value("${SENDER_EMAIL}")
+    private String from;
+
+    @Value("${ses.to}")
+    private String[] toAddresses;
 
     @Test
     void printAwsRegion() {
@@ -38,5 +46,10 @@ public class AwsConfigTest {
         System.out.println("Bucket count: " + response.buckets().size());
     }
 
+    @Test
+    void testSESEmailsEnvVars() {
+        System.out.println("Sender Email: " + (from));
+        System.out.println("RECIPIENT_EMAIL: " + System.getenv("RECIPIENT_EMAIL"));
+    }
 
 }

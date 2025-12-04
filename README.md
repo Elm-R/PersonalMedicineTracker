@@ -41,6 +41,7 @@ A medicine inventory tracker that manages medicines, tracks quantities, and moni
 ## Cloud Features
 - **AWS Services**
   - S3 for storage of the medicine inventory data as csv files
+  - SES for sending email notifications about medicines expiring soon
 - **Terraform: Infrastructure as Code (IaC)**
   - used to define, create, and manage all AWS resources
   

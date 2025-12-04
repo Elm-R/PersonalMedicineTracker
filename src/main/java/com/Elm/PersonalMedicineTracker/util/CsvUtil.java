@@ -15,27 +15,37 @@ public class CsvUtil {
 
     private CsvUtil() {}
 
+
     public static String generateCsv(List<MedicineInventoryEntity> medicines) {
         StringBuilder sb = new StringBuilder();
-
-        // Header
-        sb.append(CSV_HEADER);
-
-// Rows
-        for (MedicineInventoryEntity m : medicines) {
-            sb.append(m.getId()).append(",");
-            sb.append(escape(m.getMedicineName())).append(",");
-            sb.append(escape(m.getMedicineType())).append(",");
-            sb.append(escape(m.getDosage())).append(",");
-            sb.append(m.getQuantityInPackages()).append(",");
-            sb.append(escape(m.getUsageInstructions())).append(",");
-            sb.append(m.getAddedOn()).append(",");
-            sb.append(m.getExpiryDate()).append("\n");
-        }
-
-
+        appendHeader(sb);
+        appendRows(sb, medicines);
         return sb.toString();
     }
+
+
+    private static void appendHeader(StringBuilder sb) {
+        sb.append(CSV_HEADER);
+    }
+
+    private static void appendRows(StringBuilder sb, List<MedicineInventoryEntity> medicines) {
+        for (MedicineInventoryEntity med : medicines) {
+            appendSingleRow(sb, med);
+        }
+    }
+
+
+    private static void appendSingleRow(StringBuilder sb, MedicineInventoryEntity m) {
+        sb.append(m.getId()).append(",");
+        sb.append(escape(m.getMedicineName())).append(",");
+        sb.append(escape(m.getMedicineType())).append(",");
+        sb.append(escape(m.getDosage())).append(",");
+        sb.append(m.getQuantityInPackages()).append(",");
+        sb.append(escape(m.getUsageInstructions())).append(",");
+        sb.append(m.getAddedOn()).append(",");
+        sb.append(m.getExpiryDate()).append("\n");
+    }
+
 
     private static String escape(String val) {
         if (val == null) return "";
@@ -50,8 +60,8 @@ public class CsvUtil {
     }
 
     public static byte[] generateCsvAsBytes(List<MedicineInventoryEntity> medicines) {
-        String csv = generateCsv(medicines);       // Step 1: create CSV String
-        return convertCSVToBytes(csv);             // Step 2: convert to bytes
+        String csv = generateCsv(medicines);
+        return convertCSVToBytes(csv);
     }
 
 }

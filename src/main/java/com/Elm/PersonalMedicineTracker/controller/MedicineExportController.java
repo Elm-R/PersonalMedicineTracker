@@ -41,17 +41,5 @@ public class MedicineExportController {
                 .body(resource);
     }
 
-    @GetMapping("/upload")
-    public String uploadCsvToS3(
-            @RequestParam(defaultValue = "medicines-inventory-spring") String bucket,
-            @RequestParam(defaultValue = "medicines_inventory.csv") String filename) {
-
-        String csv = csvExportService.exportMedicinesToCsv();
-        s3Service.uploadCsv(bucket, filename, csv);
-
-        return "CSV uploaded successfully to bucket '" + bucket + "' as file '" + filename + "'!";
-    }
-
-
 }
 
