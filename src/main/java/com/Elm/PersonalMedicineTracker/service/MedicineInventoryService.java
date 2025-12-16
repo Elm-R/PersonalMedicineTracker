@@ -19,7 +19,8 @@ public class MedicineInventoryService {
     private final MedicineInventoryRepository medInvRepo;
     private final Clock clock;
 
-    public MedicineInventoryService(MedicineInventoryRepository medInvRepo, Clock clock) {
+    public MedicineInventoryService(MedicineInventoryRepository medInvRepo,
+                                    Clock clock) {
         this.medInvRepo = medInvRepo;
         this.clock = clock;
     }
@@ -87,6 +88,10 @@ public class MedicineInventoryService {
 
     public List<MedicineInventoryEntity> getExpiredMedicines() {
         return medInvRepo.findExpiredMedicines(LocalDate.now(clock));
+    }
+
+    public List<MedicineInventoryEntity> getNonExpiredMedicines() {
+        return medInvRepo.findNonExpiredMedicines(LocalDate.now(clock));
     }
 
     public List<MedicineInventoryEntity> getExpiringInDays(int days) {

@@ -17,6 +17,10 @@ public interface MedicineInventoryRepository extends JpaRepository<MedicineInven
     @Query("SELECT m FROM MedicineInventoryEntity m WHERE m.expiryDate < :today")
     List<MedicineInventoryEntity> findExpiredMedicines(@Param("today") LocalDate today);
 
+    // non expired meds
+    @Query("SELECT m FROM MedicineInventoryEntity m WHERE m.expiryDate > :today")
+    List<MedicineInventoryEntity> findNonExpiredMedicines(@Param("today") LocalDate today);
+
     // Medicines expiring within X days
     @Query("SELECT m FROM MedicineInventoryEntity m WHERE m.expiryDate BETWEEN :today AND :targetDate")
     List<MedicineInventoryEntity> findExpiringWithinDays(@Param("today") LocalDate today,

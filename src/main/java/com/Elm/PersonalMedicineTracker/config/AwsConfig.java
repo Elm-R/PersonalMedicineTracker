@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.cloudwatch.CloudWatchClient;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.ses.SesClient;
 import software.amazon.awssdk.services.lambda.LambdaClient;
@@ -20,6 +21,15 @@ public class AwsConfig {
 
     // Instead of manually loading keys:
     // DefaultCredentialsProvider will find AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY automatically.
+
+    @Bean
+    public CloudWatchClient cloudWatchClient() {
+        return CloudWatchClient.builder()
+                .region(region)
+                .credentialsProvider(DefaultCredentialsProvider.create())
+                .build();
+    }
+
 
     @Bean
     public S3Client s3Client() {

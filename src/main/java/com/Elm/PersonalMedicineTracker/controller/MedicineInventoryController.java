@@ -57,6 +57,12 @@ public class MedicineInventoryController {
         return ResponseEntity.ok("Medicine with ID " + id + " deleted successfully.");
     }
 
+    // GET /api/meds/NotExpired
+    @GetMapping("/not-expired")
+    public List<MedicineInventoryEntity> getNonExpiredMedicinesCont() {
+        return medInvService.getNonExpiredMedicines();
+    }
+
     // GET /api/meds/expired
     @GetMapping("/expired")
     public List<MedicineInventoryEntity> getExpiredMedicines() {

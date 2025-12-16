@@ -1,0 +1,15 @@
+# roles
+resource "aws_iam_role" "grafana_cloudwatch_assume_role" {
+  name = "grafana-cloudwatch-access-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Action = "sts:AssumeRole",
+      Principal = {
+        Service = "grafana.amazonaws.com"
+      }
+    }]
+  })
+}
