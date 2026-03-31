@@ -2,7 +2,7 @@ name: Build and Push Docker Images with Commit Hash Loop
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build-and-push:
