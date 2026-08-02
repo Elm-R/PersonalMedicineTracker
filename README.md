@@ -11,7 +11,7 @@ Integrates with **AWS** for storage, email notifications, monitoring, and visual
 - MySQL 
 - Docker
 - Terraform
-- AWS (S3, SES, CloudWatch, Grafana)
+- AWS (S3, SES, IAM, CloudWatch, Grafana, ECS Fargate, VPC)
 - Kubernetes (Planned)
 - GitHub Actions (Planned)
 
@@ -46,6 +46,7 @@ Integrates with **AWS** for storage, email notifications, monitoring, and visual
   - S3 for storage of the medicine inventory data as csv files
   - SES for sending email notifications about medicines expiring soon
   - CloudWatch and Grafana for monitoring expiry metrics
+  - ECS Fargate for running the Spring Boot application and MySQL containers
   
 ### Grafana Dashboard
 ![Valid Medicines Panel](valid_meds_panel.png)

@@ -1,6 +1,5 @@
-variable "iam_username" {
-  description = "The IAM user to attach the policy to"
-  type        = string
+variable "ecs_task_execution_role_arn" {
+  type = string
 }
 
 variable "mysql_database" {
